@@ -96,6 +96,8 @@ function checkPossible(i,j){
     if(sum < 0 || sum >= dimension*dimension){
         return false;
     }
-
+    else if((i%dimension == 0 && sum%dimension == 9) || (i%dimension == 9 && sum%dimension == 0)){
+        return false;
+    }
     return true;
 }
