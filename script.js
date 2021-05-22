@@ -1,3 +1,12 @@
+/* Code to disable right click menu to allow functionality found from https://www.codeinwp.com/snippets/disable-right-click-context-menu/*/
+window.addEventListener('contextmenu', function (e) {  
+    e.preventDefault(); 
+  }, false);
+
+
+
+
+
 let dimension = 10;
 let bombsNo = 20;
 let tileArray = new Array();
@@ -21,11 +30,14 @@ function newGame(){
             let tileElement = document.createElement("div");
             tileElement.classList.add("game-tile");
             tileElement.onclick = function() {revealTile(tileElement,location)};
+            tileElement.oncontextmenu = function() {flagTile(tileElement,location)};
             gameArea.appendChild(tileElement);
 
             tileArray[tileCount] = {
                 adjacency: 0,
-                bomb: false
+                bomb: false,
+                revealed: false,
+                flagged: false
             }
 
             tileCount += 1;
@@ -58,48 +70,53 @@ function newGame(){
 }
 
 function revealTile(tileElement,location){
-    if(tileArray[location].bomb){
-        tileElement.style.backgroundColor = "red";
+    if(!tileArray[location].flagged && !tileArray[location].revealed){
 
-        if(!loseCondition){
-            alert("you lose");
-            loseCondition = true;
-            for(let i = 0; i < dimension*dimension; i++){
-                let tileChild = document.getElementById("minefield-area").children[i];
-                revealTile(tileChild,i);
+        tileArray[location].revealed = true;
+
+        if(tileArray[location].bomb){
+            tileElement.style.backgroundColor = "red";
+    
+            if(!loseCondition){
+                alert("you lose");
+                loseCondition = true;
+                for(let i = 0; i < dimension*dimension; i++){
+                    let tileChild = document.getElementById("minefield-area").children[i];
+                    revealTile(tileChild,i);
+                }
             }
+            
         }
-        
-    }
-    else{
-        switch (tileArray[location].adjacency){
-            case 1:
-                tileElement.style.backgroundColor = "yellow";
-            break;
-            case 2:
-                tileElement.style.backgroundColor = "green";
-            break;
-            case 3:
-                tileElement.style.backgroundColor = "blue";
-            break;
-            case 4:
-                tileElement.style.backgroundColor = "cyan";
-            break;
-            case 5:
-                tileElement.style.backgroundColor = "orange";
-            break;
-            case 6:
-                tileElement.style.backgroundColor = "black";
-            break;
-            case 7:
-                tileElement.style.backgroundColor = "brown";
-            break;
-            case 8:
-                tileElement.style.backgroundColor = "pink";
-            break;
-            default:
-                tileElement.style.backgroundColor = "grey";
-            break;
+        else{
+            switch (tileArray[location].adjacency){
+                case 1:
+                    tileElement.style.backgroundColor = "yellow";
+                break;
+                case 2:
+                    tileElement.style.backgroundColor = "green";
+                break;
+                case 3:
+                    tileElement.style.backgroundColor = "blue";
+                break;
+                case 4:
+                    tileElement.style.backgroundColor = "cyan";
+                break;
+                case 5:
+                    tileElement.style.backgroundColor = "orange";
+                break;
+                case 6:
+                    tileElement.style.backgroundColor = "black";
+                break;
+                case 7:
+                    tileElement.style.backgroundColor = "brown";
+                break;
+                case 8:
+                    tileElement.style.backgroundColor = "pink";
+                break;
+                default:
+                    tileElement.style.backgroundColor = "grey";
+                break;
+            }
         }
     }
 }
@@ -109,8 +126,19 @@ function checkPossible(i,j){
     if(sum < 0 || sum >= dimension*dimension){
         return false;
     }
-    else if((i%dimension == 0 && sum%dimension == 9) || (i%dimension == 9 && sum%dimension == 0)){
+    else if((i%dimension == 0 && sum%dimension == dimension-1) || (i%dimension == dimension-1 && sum%dimension == 0)){
         return false;
     }
     return true;
+}
+
+function flagTile(tileElement,location){
+    if(!tileArray[location].flagged){
+        tileArray[location].flagged = true;
+        tileElement.style.backgroundColor = "purple";
+    }
+    else{
+        tileArray[location].flagged = false;
+        tileElement.style.backgroundColor = "white";
+    }
 }
