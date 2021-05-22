@@ -67,7 +67,7 @@ footer{
 .game-tile{
     width:50px;
     height:50px;
-    background-color: blue; 
+    background-color: white; 
     border-color: black;
     border-width: 5px;
     border-style:solid;

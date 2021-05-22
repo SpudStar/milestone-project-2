@@ -1,8 +1,11 @@
 let dimension = 10;
 let bombsNo = 20;
 let tileArray = new Array();
+let loseCondition = false;
 
 function newGame(){
+    loseCondition = false;
+
     let gameArea = document.getElementById("minefield-area");
 
     while (gameArea.firstChild) {
@@ -57,6 +60,16 @@ function newGame(){
 function revealTile(tileElement,location){
     if(tileArray[location].bomb){
         tileElement.style.backgroundColor = "red";
+
+        if(!loseCondition){
+            alert("you lose");
+            loseCondition = true;
+            for(let i = 0; i < dimension*dimension; i++){
+                let tileChild = document.getElementById("minefield-area").children[i];
+                revealTile(tileChild,i);
+            }
+        }
+        
     }
     else{
         switch (tileArray[location].adjacency){
