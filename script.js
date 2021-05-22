@@ -11,11 +11,12 @@ function newGame(){
         for(let y=0; y<dimension; y++){
             let tileElement = document.createElement("div");
             tileElement.classList.add("game-tile");
+            tileElement.onclick = function() {revealTile(tileElement)};
             gameArea.appendChild(tileElement);
         }
     }
 }
 
-function revealTile(){
-    
+function revealTile(tileElement){
+    tileElement.style.backgroundColor = "red";
 }
