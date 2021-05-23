@@ -1,25 +1,23 @@
 /* Code to disable right click menu to allow functionality found from https://www.codeinwp.com/snippets/disable-right-click-context-menu/*/
 window.addEventListener('contextmenu', function (e) {  
     e.preventDefault(); 
-  }, false);
+}, false);
 
-let dimension = 15;
+let test = true;
+
+let dimension = 10;
 let bombsNo = 20;
 let tileArray = new Array();
 let loseCondition = false;
 
 function newGame(){
     loseCondition = false;
-
+    test = true;
     let gameArea = document.getElementById("minefield-area");
 
     while (gameArea.firstChild) {
         gameArea.removeChild(gameArea.firstChild);
     }
-    alert(gameArea.offsetWidth);
-
-    let resizer = (gameArea.offsetWidth - 20)/dimension -10;
-            alert(resizer);
 
     var tileCount = 0;
     for(let x=0; x<dimension; x++){
@@ -33,6 +31,8 @@ function newGame(){
             tileElement.classList.add("game-tile");
             tileElement.onclick = function() {revealTile(tileElement,location)};
             tileElement.oncontextmenu = function() {flagTile(tileElement,location)};
+
+            let resizer = (gameArea.offsetWidth - 20)/dimension -10;
 
             tileElement.style.height = resizer+"px";
             tileElement.style.width = resizer+"px";
@@ -89,7 +89,6 @@ function revealTile(tileElement,location){
                 loseCondition = true;
                 for(let i = 0; i < dimension; i++){
                     for(let j = 0; j < dimension; j++){
-                    
                         let lineChild = document.getElementById("minefield-area").children[i];
                         let tileChild = lineChild.children[j];
                         revealTile(tileChild,(i*dimension + j));
@@ -126,6 +125,7 @@ function revealTile(tileElement,location){
                 break;
                 default:
                     tileElement.style.backgroundColor = "grey";
+                        revealAdjacentGrey(location);
                 break;
             }
         }
@@ -151,5 +151,36 @@ function flagTile(tileElement,location){
     else{
         tileArray[location].flagged = false;
         tileElement.style.backgroundColor = "white";
+    }
+}
+
+function revealAdjacentGrey(location){
+    test = false;
+    
+    for(let j = -dimension-1; j <= dimension+1; j++){
+
+        if((j == -dimension-1 || j == -dimension || j == -dimension+1 || j == -1 || j == 1 || j == dimension -1 || j == dimension || j == dimension + 1) && checkPossible(location,j)){
+            let sum = location + j;
+            
+            let lineChild = document.getElementById("minefield-area").children[parseInt(sum/dimension)];
+            let tileChild = lineChild.children[sum%dimension];
+            revealTile(tileChild,sum);
+        }
+    }    
+}
+
+window.addEventListener('resize', resizeTiles);  /*checkPossible(i,j) Event listener to notify if the window changes size taken from https://developer.mozilla.org/en-US/docs/Web/API/Window/resize_event*/
+
+function resizeTiles(){
+    let gameArea = document.getElementById("minefield-area");
+    let resizer = (gameArea.offsetWidth - 20)/dimension -10;
+    for(let i = 0; i < dimension; i++){
+        for(let j = 0; j < dimension; j++){
+        
+            let lineChild = document.getElementById("minefield-area").children[i];
+            let tileChild = lineChild.children[j];
+            tileChild.style.height = resizer+"px";
+            tileChild.style.width = resizer+"px";
+        }
     }
 }
