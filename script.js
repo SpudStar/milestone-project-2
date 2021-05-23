@@ -36,6 +36,13 @@ function newGame(){
 
             tileElement.style.height = resizer+"px";
             tileElement.style.width = resizer+"px";
+
+            let spanElement = document.createElement("p");
+            let iElement = document.createElement("i");
+            iElement.classList.add("fa")
+
+            spanElement.appendChild(iElement);
+            tileElement.appendChild(spanElement);
             lineElement.appendChild(tileElement);
 
             tileArray[tileCount] = {
@@ -77,13 +84,20 @@ function newGame(){
 }
 
 function revealTile(tileElement,location){
-    if(!tileArray[location].flagged && !tileArray[location].revealed){
 
+    if(loseCondition && tileArray[location].flagged && !tileArray[location].bomb){
+        flagTile(tileElement,location);
+    }
+
+    if(!tileArray[location].flagged && !tileArray[location].revealed){
+        /* class="fa fa-question-circle-o"*/
         tileArray[location].revealed = true;
 
         if(tileArray[location].bomb){
+            
+            tileElement.firstChild.firstChild.classList.add("fa-bomb")
             tileElement.style.backgroundColor = "red";
-    
+
             if(!loseCondition){
                 alert("you lose");
                 loseCondition = true;
@@ -98,6 +112,8 @@ function revealTile(tileElement,location){
             
         }
         else{
+            tileElement.firstChild.innerHTML = tileArray[location].adjacency;
+
             switch (tileArray[location].adjacency){
                 case 1:
                     tileElement.style.backgroundColor = "yellow";
@@ -146,10 +162,12 @@ function checkPossible(i,j){
 function flagTile(tileElement,location){
     if(!tileArray[location].flagged){
         tileArray[location].flagged = true;
+        tileElement.firstChild.firstChild.classList.add("fa-flag")
         tileElement.style.backgroundColor = "purple";
     }
     else{
         tileArray[location].flagged = false;
+        tileElement.firstChild.firstChild.classList.remove("fa-flag")
         tileElement.style.backgroundColor = "white";
     }
 }
