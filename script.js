@@ -6,12 +6,17 @@ window.addEventListener('contextmenu', function (e) {
 let test = true;
 let dimension = 10;
 let bombsNo = 15;
+let revealCount = 0;
 let tileArray = new Array();
 let loseCondition = false;
+let winCondition = false;
 newGame();
 
 function newGame(){
     loseCondition = false;
+    winCondition = false;
+    revealCount = dimension*dimension - bombsNo;
+
     test = true;
     let gameArea = document.getElementById("minefield-area");
 
@@ -89,6 +94,10 @@ function revealTile(tileElement,location){
         flagTile(tileElement,location);
     }
 
+    if(winCondition && !tileArray[location].flagged && tileArray[location].bomb){
+        flagTile(tileElement,location);
+    }
+
     if(!tileArray[location].flagged && !tileArray[location].revealed){
         /* class="fa fa-question-circle-o"*/
         tileArray[location].revealed = true;
@@ -98,7 +107,7 @@ function revealTile(tileElement,location){
             tileElement.firstChild.firstChild.classList.add("fa-bomb")
             tileElement.style.backgroundColor = "red";
 
-            if(!loseCondition){
+            if(!loseCondition && !winCondition){
                 alert("you lose");
                 loseCondition = true;
                 for(let i = 0; i < dimension; i++){
@@ -143,6 +152,19 @@ function revealTile(tileElement,location){
                     tileElement.style.backgroundColor = "grey";
                         revealAdjacentGrey(location);
                 break;
+            }
+            revealCount -= 1;
+        }
+    }
+
+    if(revealCount == 0 && !loseCondition && !winCondition){
+        alert("you Win!");
+        winCondition = true;
+        for(let i = 0; i < dimension; i++){
+            for(let j = 0; j < dimension; j++){
+                let lineChild = document.getElementById("minefield-area").children[i];
+                let tileChild = lineChild.children[j];
+                revealTile(tileChild,(i*dimension + j));
             }
         }
     }
