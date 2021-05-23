@@ -5,7 +5,9 @@ window.addEventListener('contextmenu', function (e) {
 
 let test = true;
 let dimension = 10;
+let newDimension = 10;
 let bombsNo = 15;
+let newBombs = 15;
 let revealCount = 0;
 let tileArray = new Array();
 let loseCondition = false;
@@ -15,6 +17,8 @@ newGame();
 function newGame(){
     loseCondition = false;
     winCondition = false;
+    dimension = newDimension;
+    bombsNo = newBombs;
     revealCount = dimension*dimension - bombsNo;
 
     test = true;
@@ -223,4 +227,46 @@ function resizeTiles(){
             tileChild.style.width = resizer+"px";
         }
     }
+}
+
+function increaseDimension(){
+    newDimension += 1;
+    if(newDimension>15){
+        newDimension = 15;
+    }
+    dimensionElement = document.getElementById("dimensionValue");
+    dimensionElement.innerHTML = newDimension;
+    bombCheck();
+}
+
+function decreaseDimension(){
+    newDimension -= 1;
+    if(newDimension<7){
+        newDimension = 7;
+    }
+    dimensionElement = document.getElementById("dimensionValue");
+    dimensionElement.innerHTML = newDimension;
+    bombCheck();
+}
+
+function increaseBombs(){
+    newBombs += 1;
+    bombCheck();
+}
+
+function decreaseBombs(){
+    newBombs -= 1;
+    bombCheck();
+}
+
+function bombCheck(){
+    if(newBombs<1){
+        newBombs = 1;
+    }
+    else if(newBombs>newDimension*newDimension - 1){
+        newBombs = newDimension*newDimension - 1;
+    }
+
+    bombElement = document.getElementById("bombValue");
+    bombElement.innerHTML = newBombs;
 }
