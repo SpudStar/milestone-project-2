@@ -3,11 +3,7 @@ window.addEventListener('contextmenu', function (e) {
     e.preventDefault(); 
   }, false);
 
-
-
-
-
-let dimension = 10;
+let dimension = 15;
 let bombsNo = 20;
 let tileArray = new Array();
 let loseCondition = false;
@@ -20,9 +16,15 @@ function newGame(){
     while (gameArea.firstChild) {
         gameArea.removeChild(gameArea.firstChild);
     }
+    alert(gameArea.offsetWidth);
+
+    let resizer = (gameArea.offsetWidth - 20)/dimension -10;
+            alert(resizer);
 
     var tileCount = 0;
     for(let x=0; x<dimension; x++){
+        let lineElement = document.createElement("div");
+
         for(let y=0; y<dimension; y++){
 
             let location = tileCount;
@@ -31,7 +33,10 @@ function newGame(){
             tileElement.classList.add("game-tile");
             tileElement.onclick = function() {revealTile(tileElement,location)};
             tileElement.oncontextmenu = function() {flagTile(tileElement,location)};
-            gameArea.appendChild(tileElement);
+
+            tileElement.style.height = resizer+"px";
+            tileElement.style.width = resizer+"px";
+            lineElement.appendChild(tileElement);
 
             tileArray[tileCount] = {
                 adjacency: 0,
@@ -42,6 +47,8 @@ function newGame(){
 
             tileCount += 1;
         }
+
+        gameArea.appendChild(lineElement);
     }
 
     /* Set Tiles as bombs */
@@ -80,9 +87,13 @@ function revealTile(tileElement,location){
             if(!loseCondition){
                 alert("you lose");
                 loseCondition = true;
-                for(let i = 0; i < dimension*dimension; i++){
-                    let tileChild = document.getElementById("minefield-area").children[i];
-                    revealTile(tileChild,i);
+                for(let i = 0; i < dimension; i++){
+                    for(let j = 0; j < dimension; j++){
+                    
+                        let lineChild = document.getElementById("minefield-area").children[i];
+                        let tileChild = lineChild.children[j];
+                        revealTile(tileChild,(i*dimension + j));
+                    }
                 }
             }
             
