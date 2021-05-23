@@ -234,7 +234,7 @@ function increaseDimension(){
     if(newDimension>15){
         newDimension = 15;
     }
-    dimensionElement = document.getElementById("dimensionValue");
+    dimensionElement = document.getElementById("dimension-value");
     dimensionElement.innerHTML = newDimension;
     bombCheck();
 }
@@ -244,7 +244,7 @@ function decreaseDimension(){
     if(newDimension<7){
         newDimension = 7;
     }
-    dimensionElement = document.getElementById("dimensionValue");
+    dimensionElement = document.getElementById("dimension-value");
     dimensionElement.innerHTML = newDimension;
     bombCheck();
 }
@@ -267,6 +267,6 @@ function bombCheck(){
         newBombs = newDimension*newDimension - 1;
     }
 
-    bombElement = document.getElementById("bombValue");
+    bombElement = document.getElementById("bomb-value");
     bombElement.innerHTML = newBombs;
 }

@@ -37,17 +37,31 @@
                 </div>
                 <div id="status-area">
                     <button onclick = "newGame();"><h3>New Game</h3></button>
-                    <div id="dimensionInput">
+                    <div id="options-container">
                         <h5>Size:</h5>
-                        <button onclick = "increaseDimension();"><i class = "fa fa-caret-up"></i></button>
-                        <p id="dimensionValue">10</p>
-                        <button onclick = "decreaseDimension();"><i class = "fa fa-caret-down"></i></button>
-                    </div>
-                    <div id="bombInput">
+                        <div id="dimension-input" class = "row no-gutters">
+                            <div class = "col">
+                                <button onclick = "increaseDimension();"><i class = "fa fa-caret-up pointer-button"></i></button>
+                            </div>
+                            <div class = "col">
+                                <p id="dimension-value">10</p>
+                            </div>
+                            <div class = "col">
+                                <button onclick = "decreaseDimension();"><i class = "fa fa-caret-down pointer-button"></i></button>
+                            </div>
+                        </div>
                         <h5>Bombs:</h5>
-                        <button onclick = "increaseBombs();"><i class = "fa fa-caret-up"></i></button>
-                        <p id="bombValue">10</p>
-                        <button onclick = "decreaseBombs();"><i class = "fa fa-caret-down"></i></button>
+                        <div id="bomb-input" class = "row no-gutters">
+                            <div class = "col">
+                                <button onclick = "increaseBombs();"><i class = "fa fa-caret-up pointer-button"></i></button>
+                            </div>
+                            <div class = "col">
+                                <p id="bomb-value">10</p>
+                            </div>
+                            <div class = "col">
+                                <button onclick = "decreaseBombs();"><i class = "fa fa-caret-down pointer-button"></i></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -56,11 +56,35 @@ header{
     border-radius: 10px;
 }
 
+#options-container{
+    width:100%;
+    height:auto;
+}
+
 #dimension-input{
-    max-width:150px;
-    display: inline-block;
+    width:100%;
+    max-width:300px;
+    height:50px;
     font-size:20px;
 }
+
+#bomb-input{
+    width:100%;
+    max-width:300px;
+    height:50px;
+    font-size:20px;
+}
+
+.pointer-button{
+    border: none;
+    text-align: center;
+    vertical-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    width:40px;
+    height:20px;
+}
+
 
 footer{
     width:100%;
@@ -113,5 +137,9 @@ i{
     #minefield-area{
         height: auto;
         min-height:0;
+    }
+
+    #options-container{
+        width:50%;
     }
 }
