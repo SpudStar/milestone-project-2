@@ -4,11 +4,11 @@ window.addEventListener('contextmenu', function (e) {
 }, false);
 
 let test = true;
-
 let dimension = 10;
-let bombsNo = 20;
+let bombsNo = 15;
 let tileArray = new Array();
 let loseCondition = false;
+newGame();
 
 function newGame(){
     loseCondition = false;
