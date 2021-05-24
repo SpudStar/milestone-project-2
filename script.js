@@ -9,6 +9,7 @@ let newDimension = 10;
 let bombsNo = 15;
 let newBombs = 15;
 let revealCount = 0;
+let flagCount = 0;
 let tileArray = new Array();
 let loseCondition = false;
 let winCondition = false;
@@ -22,6 +23,7 @@ function newGame(){
     dimension = newDimension;
     bombsNo = newBombs;
     revealCount = dimension*dimension - bombsNo;
+    flagCount = 0;
     mobileFlagToTile();
 
     test = true;
@@ -93,6 +95,7 @@ function newGame(){
         }
         tileArray[i].adjacency = adjacentBombs;
     }
+    updateStatus();
 }
 
 function revealTile(tileElement,location){
@@ -165,6 +168,7 @@ function revealTile(tileElement,location){
                     break;
                 }
                 revealCount -= 1;
+                updateStatus();
             }
         }
     
@@ -199,12 +203,15 @@ function flagTile(tileElement,location){
         tileArray[location].flagged = true;
         tileElement.firstChild.firstChild.classList.add("fa-flag")
         tileElement.style.backgroundColor = "purple";
+        flagCount += 1;
     }
     else{
         tileArray[location].flagged = false;
         tileElement.firstChild.firstChild.classList.remove("fa-flag")
         tileElement.style.backgroundColor = "white";
+        flagCount -= 1;
     }
+    updateStatus();
 }
 
 function revealAdjacentGrey(location){
@@ -306,4 +313,15 @@ function mobileTileToFlag(){
     tileIcon.style.borderWidth = "3px";
 
     mobileFlagSetting = true;
+}
+
+function updateStatus(){
+    bombValueElement = document.getElementById("bomb-total-value");
+    bombValueElement.innerHTML = bombsNo;
+
+    flagValueElement = document.getElementById("flagged-value");
+    flagValueElement.innerHTML = flagCount;
+
+    tileValueElement = document.getElementById("tiles-left-value");
+    tileValueElement.innerHTML = revealCount;
 }
