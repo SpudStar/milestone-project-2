@@ -5,7 +5,7 @@ html, body {
 
 header{
     width:100%;
-    height:50px;
+    height:70px;
     margin:0;
     top:0;
     position:fixed;
@@ -13,12 +13,57 @@ header{
     z-index: 1;
 }
 
+#logo-container{
+    width:15%;
+    padding-left: 5px;
+}
+
+#logo{
+    display: inline-block;
+}
+
+#img-holder{
+    display: inline-block;
+    position:relative;
+    top:-22px;
+    left:-2px;
+    height:60px;
+}
+
+h1{
+    color: #FFFFFF;
+    text-decoration:none !important;
+    font-family: 'Righteous', cursive;
+    font-size:60px;
+    vertical-align: middle;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+#link-to-rules-container{
+    width:15%;
+    text-align:right;
+    vertical-align: middle;
+    padding-right:10px;
+}
+
+h2{
+    color: #FFFFFF;
+    text-decoration:none !important;
+    font-family: 'Righteous', cursive;
+    font-size:40px;
+    margin-top: 10px;
+}
+
 #gameplay-area{
     width:100%;
     padding-top:50px; /*Helps stop nav bar overlap*/
     background-color:#3f3f3f;
     margin-top:20px;
-    padding: 50px 0;
+    padding: 70px 0;
+    background: url('../images/camo-background.png') center center / cover repeat fixed;
 }
 
 #game-container{
@@ -34,7 +79,7 @@ header{
     max-width:620px;
     height: auto;
     min-height:620px;
-    background-color:#386841;
+    background-color:#386841a8;
     display: inline-block;
     margin:0;
     margin-bottom:-5px;
@@ -72,12 +117,12 @@ i{
     max-width:200px;
     height:100%;
     min-height:620px;
-    background-color:#82f382;
+    background-color:#82f382a8;
     display: inline-block;
     margin:0;
     vertical-align:top;
     padding: 30px 0;
-    border: 2px solid rgb(10, 43, 2);
+    border: 2px solid #0a2b02;
     border-radius: 10px;
 }
 
@@ -144,17 +189,13 @@ i{
 
 footer{
     width:100%;
-    padding-bottom:20px;
+    padding:20px 0;
     min-height:10%;
-    background-color:#424e15;
     z-index: 1;
     bottom:0;
-}
-
-@media  (max-height: 600px) {
-    header{
-       position:absolute;  /*Allows the nav bar to hide if the vertical space is limited*/
-    }
+    background-color:#011f02;
+    color:white;
+    text-align: center;
 }
 
 @media  (max-width: 850px) {
@@ -175,5 +216,24 @@ footer{
 
     #stats-container{
         width:45%;
+    }
+
+    header{
+        height:45px;
+    }
+
+    h1{
+        font-size:40px;
+    }
+
+    h2{
+        font-size:25px;
+        margin-top: 7px;
+    }
+
+    img{
+        height:40px;
+        position:relative;
+        top:8px;
     }
 }
