@@ -30,16 +30,48 @@
     <section id="gameplay-area">
         <div id="background-image">
             <div id="game-container">
-                <div id="gameplay-buttons-area">
-
-                </div>
                 <div id="minefield-area">
+                    <!--Left empty, it is filled by the javascript-->
                 </div>
                 <div id="status-area">
-                    <button onclick = "newGame();"><h3>New Game</h3></button>
+                    <div id="stats-container">
+                        <div  class = "row no-gutters container">
+                            <div class = "col-7">
+                                <h6>Flagged:</h6>
+                            </div>
+                            <div class = "col-1">
+                                <i class = "fa fa-flag"></i>
+                            </div>
+                            <div class = "col-4">
+                                <p id="flagged-value">0</p>
+                            </div>
+                        </div>
+                        <div  class = "row no-gutters container">
+                            <div class = "col-7">
+                                <h6>Total Bombs:</h6>
+                            </div>
+                            <div class = "col-1">
+                                <i class = "fa fa-bomb"></i>
+                            </div>
+                            <div class = "col-4">
+                                <p id="bomb-total-value">0</p>
+                            </div>
+                        </div>
+                        <div  class = "row no-gutters container">
+                            <div class = "col-7">
+                                <h6>Tiles Left:</h6>
+                            </div>
+                            <div class = "col-1">
+                                <i class = "fa fa-square"></i>
+                            </div>
+                            <div class = "col-4">
+                                <p id="tiles-left-value">0</p>
+                            </div>
+                        </div>
+                    </div>
                     <div id="options-container">
-                        <h5>Size:</h5>
-                        <div id="dimension-input" class = "row no-gutters">
+                        <h6>Size:</h6>
+                        <div class = "row no-gutters container">
                             <div class = "col">
                                 <button onclick = "increaseDimension();"><i class = "fa fa-caret-up pointer-button"></i></button>
                             </div>
@@ -50,8 +82,8 @@
                                 <button onclick = "decreaseDimension();"><i class = "fa fa-caret-down pointer-button"></i></button>
                             </div>
                         </div>
-                        <h5>Bombs:</h5>
-                        <div id="bomb-input" class = "row no-gutters">
+                        <h6>Bombs:</h6>
+                        <div class = "row no-gutters container">
                             <div class = "col">
                                 <button onclick = "increaseBombs();"><i class = "fa fa-caret-up pointer-button"></i></button>
                             </div>
@@ -63,6 +95,7 @@
                             </div>
                         </div>
                     </div>
+                    <button onclick = "newGame();"><h3>New Game</h3></button>
                 </div>
             </div>
         </div>

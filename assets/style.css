@@ -43,58 +43,6 @@ header{
     border-radius: 10px;
 }
 
-#status-area{
-    width:100vw;
-    max-width:200px;
-    height:100%;
-    min-height:620px;
-    background-color:#82f382;
-    display: inline-block;
-    margin:0;
-    vertical-align:top;
-    border: 2px solid rgb(10, 43, 2);
-    border-radius: 10px;
-}
-
-#options-container{
-    width:100%;
-    height:auto;
-}
-
-#dimension-input{
-    width:100%;
-    max-width:300px;
-    height:50px;
-    font-size:20px;
-}
-
-#bomb-input{
-    width:100%;
-    max-width:300px;
-    height:50px;
-    font-size:20px;
-}
-
-.pointer-button{
-    border: none;
-    text-align: center;
-    vertical-align: center;
-    text-decoration: none;
-    font-size: 20px;
-    width:40px;
-    height:20px;
-}
-
-
-footer{
-    width:100%;
-    padding-bottom:20px;
-    min-height:10%;
-    background-color:#424e15;
-    z-index: 1;
-    bottom:0;
-}
-
 .game-tile{
     width:50px;
     height:50px;
@@ -121,6 +69,71 @@ i{
     padding-top:10%;
 }
 
+#status-area{
+    width:100vw;
+    max-width:200px;
+    height:100%;
+    min-height:620px;
+    background-color:#82f382;
+    display: inline-block;
+    margin:0;
+    vertical-align:top;
+    padding-top: 30px;
+    border: 2px solid rgb(10, 43, 2);
+    border-radius: 10px;
+}
+
+#options-container{
+    width:100%;
+    height:200px;
+    display:inline-block;
+}
+
+#stats-container{
+    width:100%;
+    height:200px;
+    padding-top: 20px;
+    display:inline-block;
+    position: relative; top: -5px;
+}
+
+.container{
+    width:100%;
+    max-width:300px;
+    height:50px;
+    font-size:20px;
+}
+
+.pointer-button{
+    border: none;
+    text-align: center;
+    vertical-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    width:40px;
+    height:20px;
+}
+
+.container h6{
+    position:relative;
+    top:5px;
+}
+
+.container p{
+    position:relative;
+    bottom:5px;
+}
+
+
+footer{
+    width:100%;
+    padding-bottom:20px;
+    min-height:10%;
+    background-color:#424e15;
+    z-index: 1;
+    bottom:0;
+}
+
 @media  (max-height: 600px) {
     header{
        position:absolute;  /*Allows the nav bar to hide if the vertical space is limited*/
@@ -131,7 +144,7 @@ i{
     #status-area{
         max-width:620px;
         min-height:200px;
-        max-height:200px;
+        height:auto;
     }
 
     #minefield-area{
@@ -140,6 +153,10 @@ i{
     }
 
     #options-container{
-        width:50%;
+        width:45%;
+    }
+
+    #stats-container{
+        width:45%;
     }
 }
