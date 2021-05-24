@@ -1,9 +1,11 @@
+/*Ensures that the body will cover the user's screen at minimum*/
 html, body {
     margin:0px;
     height:100%;
   }
 
-header{
+/*CSS used to style the header and its content*/
+header{ /*The main header class overall sizing and colour*/
     width:100%;
     height:70px;
     margin:0;
@@ -13,16 +15,16 @@ header{
     z-index: 1;
 }
 
-#logo-container{
+#logo-container{ /*The container for the title and image creading the logo*/
     width:15%;
     padding-left: 5px;
 }
 
-#logo{
+#logo{ /*The container for the title specifically*/
     display: inline-block;
 }
 
-#img-holder{
+#img-holder{ /*The container for the image specifically*/
     display: inline-block;
     position:relative;
     top:-22px;
@@ -30,7 +32,7 @@ header{
     height:60px;
 }
 
-h1{
+h1{ /*Additional CSS to styalise the title*/
     color: #FFFFFF;
     text-decoration:none !important;
     font-family: 'Righteous', cursive;
@@ -38,18 +40,18 @@ h1{
     vertical-align: middle;
 }
 
-a:hover{
+a:hover{ /*Removes the underline when moused over*/
     text-decoration: none;
 }
 
-#link-to-rules-container{
+#link-to-rules-container{ /*The container for the link to the minesweeper wikipedia page*/
     width:15%;
     text-align:right;
     vertical-align: middle;
     padding-right:10px;
 }
 
-h2{
+h2{ /*Additional CSS to styalise the how to play link*/
     color: #FFFFFF;
     text-decoration:none !important;
     font-family: 'Righteous', cursive;
@@ -57,7 +59,8 @@ h2{
     margin-top: 10px;
 }
 
-#gameplay-area{
+/*CSS elements used for the general page layout*/
+#gameplay-area{ /*The backdrop giving a camo background for texture*/
     width:100%;
     padding-top:50px; /*Helps stop nav bar overlap*/
     background-color:#3f3f3f;
@@ -66,7 +69,7 @@ h2{
     background: url('../images/camo-background.png') center center / cover repeat fixed;
 }
 
-#game-container{
+#game-container{ /*The holder for the minefield and game status update containers, allows them to be aligned easier*/
     width:100%;
     height: auto;
     margin:auto;
@@ -74,7 +77,8 @@ h2{
     text-align: center;
 }
 
-#minefield-area{
+/*CSS elements used to styalise the game itself*/
+#minefield-area{ /*The container for the game itself*/
     width:100%;
     max-width:620px;
     height: auto;
@@ -88,7 +92,7 @@ h2{
     border-radius: 10px;
 }
 
-.game-tile{
+.game-tile{ /*The basis for every clickable tile in the game*/
     width:50px;
     height:50px;
     font-size:1rem;
@@ -102,17 +106,18 @@ h2{
     overflow: hidden;
 }
 
-p{
+p{ /*Helps styalise the adjacency values when revealed*/
     font-size:100%;
     text-align: center;
 }
 
-i{
+i{ /*Helps styalise the icons when revealed*/
     font-size:100%;
     text-align: center;
 }
 
-#status-area{
+/*CSS Elements used to update the user of the game's status*/
+#status-area{ /*The container for the interactable elements*/
     width:100vw;
     max-width:200px;
     height:100%;
@@ -126,13 +131,13 @@ i{
     border-radius: 10px;
 }
 
-#selector{
+#selector{ /*The container for optional mobile buttons to flag/reveal*/
     width:100%;
     height: 75px;
     display:inline-block;
 }
 
-.selector-button{
+.selector-button{ /*The styalising used for the mobile buttons*/
     width:60px;
     height:60px;
     border: 2px solid black;
@@ -146,13 +151,13 @@ i{
     background-color: blanchedalmond;
 }
 
-#options-container{
+#options-container{ /*The container for user interactable game settings*/
     width:100%;
     height:180px;
     display:inline-block;
 }
 
-#stats-container{
+#stats-container{ /*The container for elements which update the user (non-controllable)*/
     width:100%;
     height:180px;
     padding-top: 20px;
@@ -160,24 +165,24 @@ i{
     position: relative; top: -5px;
 }
 
-.container{
+.container{ /*A basic container used to help position multiple components on one line*/
     width:100%;
     max-width:300px;
     height:50px;
     font-size:20px;
 }
 
-.container h6{
+.container h6{ /*Adjusts the position of h6 text for better alignment*/
     position:relative;
     top:5px;
 }
 
-.container p{
+.container p{ /*Adjusts the position of p text used specifically in the status area for better alignment*/
     position:relative;
     bottom:1px;
 }
 
-.pointer-button{
+.pointer-button{ /*Adjusts the look of the chevron buttons the user can click to adjust settings*/
     border: none;
     text-align: center;
     vertical-align: center;
@@ -187,6 +192,7 @@ i{
     height:20px;
 }
 
+/*CSS used in the footer*/
 footer{
     width:100%;
     padding:20px 0;
@@ -198,40 +204,41 @@ footer{
     text-align: center;
 }
 
+/*CSS used to help position objects for smaller screen sizes*/
 @media  (max-width: 850px) {
-    #status-area{
+    #status-area{ /*Makes the status area landscape for easier viewing*/
         max-width:620px;
         min-height:200px;
         height:auto;
     }
 
-    #minefield-area{
+    #minefield-area{ /*Adjusts the game's area to fit the tiles dynamically scaling for the screen width*/
         height: auto;
         min-height:0;
     }
 
-    #options-container{
+    #options-container{ /*Allows the stats container to be adjacent*/
         width:45%;
     }
 
-    #stats-container{
+    #stats-container{ /*Allows the options container to be adjacent*/
         width:45%;
     }
 
-    header{
+    header{ /*Reduces the header size*/
         height:45px;
     }
 
-    h1{
+    h1{ /*Reduces the title size*/
         font-size:40px;
     }
 
-    h2{
+    h2{ /*Reduces the how to play link size*/
         font-size:25px;
         margin-top: 7px;
     }
 
-    img{
+    img{ /*Reduces the image in the logo size*/
         height:40px;
         position:relative;
         top:8px;

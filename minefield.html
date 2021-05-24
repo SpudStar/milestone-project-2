@@ -18,7 +18,9 @@
         <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <!--HTML code used for the header of the page------------------------------------------------------------>
     <header class = "row no-gutters">
+        <!--HTML code used for the title logo of the page -->
         <div id="logo-container" class = "col">
             <a href="minefield.html"  id="logo">
                 <h1>Minefield</h1>
@@ -27,6 +29,7 @@
                 <img src="/assets/images/explosion.png" alt="Picture of half a cartoon explosion, for logo garnish." />
             </div>
         </div>
+        <!--HTML code used for the how to play link of the page -->
         <nav id="link-to-rules-container" class = "col">
             <a href="https://en.wikipedia.org/wiki/Minesweeper_(video_game)"  target="_blank" rel="noopener" aria-label="Click to go to an external page and learn about the rules of minesweeper!">
                 <h2>How to Play</h2>
@@ -34,13 +37,15 @@
         </nav>
     </header>
 
+    <!--HTML code used to structure the main game area of the page------------------------------------------------------------>
     <section id="gameplay-area">
-        <div id="background-image">
-            <div id="game-container">
-                <div id="minefield-area">
+        <div id="background-image">  <!--Div that contains the background camo image-->
+            <div id="game-container"> <!--Div that contains the minesweeper gameplay and user input containers-->
+                <div id="minefield-area"> <!--Div that contains the minesweeper gameplay-->
                     <!--Left empty, it is filled by the javascript-->
                 </div>
-                <div id="status-area">
+                <div id="status-area"> <!--Div that contains the user inputs and feedback-->
+                    <!--Div that contains the optional buttons for mobile user functionality-->
                     <div id="selector" class = "row no-gutters">
                         <div id="mobile-tile-selector" class="selector-button col" onclick="mobileFlagToTile();">
                             <i class = "fa fa-mouse-pointer"></i>
@@ -49,6 +54,7 @@
                             <i class = "fa fa-flag"></i>
                         </div>
                     </div>
+                    <!--Div that contains the non interactable feedback for gameplay logic and user benefit-->
                     <div id="stats-container">
                         <div  class = "row no-gutters container">
                             <div class = "col-7">
@@ -84,6 +90,7 @@
                             </div>
                         </div>
                     </div>
+                    <!--Div that contains the customizable parameters for the user to alter-->
                     <div id="options-container">
                         <h6>Size:</h6>
                         <div class = "row no-gutters container">
@@ -110,18 +117,21 @@
                             </div>
                         </div>
                     </div>
+                    <!--Creates the button that starts a new game-->
                     <button onclick = "newGame();"><h3>New Game</h3></button>
                 </div>
             </div>
         </div>
     </section>
 
+    <!--HTML code used to structure the footer of the page------------------------------------------------------------>
     <footer>
         <div">
             <h4><i class="fa fa-copyright"></i> Edward Stanley</h4>
         </div>
     </footer>
 
+    <!--Call to the javascript---------------------------------------------------------------------------------------->
     <script src="assets/javascript/script.js"></script>
 </body>
 </html>
