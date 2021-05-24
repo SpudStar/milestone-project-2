@@ -12,6 +12,8 @@ let revealCount = 0;
 let tileArray = new Array();
 let loseCondition = false;
 let winCondition = false;
+let mobileFlagSetting = true;
+
 newGame();
 
 function newGame(){
@@ -20,6 +22,7 @@ function newGame(){
     dimension = newDimension;
     bombsNo = newBombs;
     revealCount = dimension*dimension - bombsNo;
+    mobileFlagToTile();
 
     test = true;
     let gameArea = document.getElementById("minefield-area");
@@ -102,63 +105,69 @@ function revealTile(tileElement,location){
         flagTile(tileElement,location);
     }
 
-    if(!tileArray[location].flagged && !tileArray[location].revealed){
-        /* class="fa fa-question-circle-o"*/
-        tileArray[location].revealed = true;
-
-        if(tileArray[location].bomb){
-            
-            tileElement.firstChild.firstChild.classList.add("fa-bomb")
-            tileElement.style.backgroundColor = "red";
-
-            if(!loseCondition && !winCondition){
-                alert("you lose");
-                loseCondition = true;
-                for(let i = 0; i < dimension; i++){
-                    for(let j = 0; j < dimension; j++){
-                        let lineChild = document.getElementById("minefield-area").children[i];
-                        let tileChild = lineChild.children[j];
-                        revealTile(tileChild,(i*dimension + j));
+    if(mobileFlagSetting){
+        flagTile(tileElement,location);
+    }
+    else{
+        if(!tileArray[location].flagged && !tileArray[location].revealed){
+            /* class="fa fa-question-circle-o"*/
+            tileArray[location].revealed = true;
+    
+            if(tileArray[location].bomb){
+                
+                tileElement.firstChild.firstChild.classList.add("fa-bomb")
+                tileElement.style.backgroundColor = "red";
+    
+                if(!loseCondition && !winCondition){
+                    alert("you lose");
+                    loseCondition = true;
+                    for(let i = 0; i < dimension; i++){
+                        for(let j = 0; j < dimension; j++){
+                            let lineChild = document.getElementById("minefield-area").children[i];
+                            let tileChild = lineChild.children[j];
+                            revealTile(tileChild,(i*dimension + j));
+                        }
                     }
                 }
+                
             }
-            
-        }
-        else{
-            tileElement.firstChild.innerHTML = tileArray[location].adjacency;
-
-            switch (tileArray[location].adjacency){
-                case 1:
-                    tileElement.style.backgroundColor = "yellow";
-                break;
-                case 2:
-                    tileElement.style.backgroundColor = "green";
-                break;
-                case 3:
-                    tileElement.style.backgroundColor = "blue";
-                break;
-                case 4:
-                    tileElement.style.backgroundColor = "cyan";
-                break;
-                case 5:
-                    tileElement.style.backgroundColor = "orange";
-                break;
-                case 6:
-                    tileElement.style.backgroundColor = "black";
-                break;
-                case 7:
-                    tileElement.style.backgroundColor = "brown";
-                break;
-                case 8:
-                    tileElement.style.backgroundColor = "pink";
-                break;
-                default:
-                    tileElement.style.backgroundColor = "grey";
-                        revealAdjacentGrey(location);
-                break;
+            else{
+                tileElement.firstChild.innerHTML = tileArray[location].adjacency;
+    
+                switch (tileArray[location].adjacency){
+                    case 1:
+                        tileElement.style.backgroundColor = "yellow";
+                    break;
+                    case 2:
+                        tileElement.style.backgroundColor = "green";
+                    break;
+                    case 3:
+                        tileElement.style.backgroundColor = "blue";
+                    break;
+                    case 4:
+                        tileElement.style.backgroundColor = "cyan";
+                    break;
+                    case 5:
+                        tileElement.style.backgroundColor = "orange";
+                    break;
+                    case 6:
+                        tileElement.style.backgroundColor = "black";
+                    break;
+                    case 7:
+                        tileElement.style.backgroundColor = "brown";
+                    break;
+                    case 8:
+                        tileElement.style.backgroundColor = "pink";
+                    break;
+                    default:
+                        tileElement.style.backgroundColor = "grey";
+                            revealAdjacentGrey(location);
+                    break;
+                }
+                revealCount -= 1;
             }
-            revealCount -= 1;
         }
+    
     }
 
     if(revealCount == 0 && !loseCondition && !winCondition){
@@ -269,4 +278,32 @@ function bombCheck(){
 
     bombElement = document.getElementById("bomb-value");
     bombElement.innerHTML = newBombs;
+}
+
+function mobileFlagToTile(){
+    flagIcon = document.getElementById("mobile-flag-selector");
+    flagIcon.style.backgroundColor = "blanchedalmond";
+    flagIcon.style.borderColor = "black";
+    flagIcon.style.borderWidth = "3px";
+
+    tileIcon = document.getElementById("mobile-tile-selector");
+    tileIcon.style.backgroundColor = "darkgrey";
+    tileIcon.style.borderColor = "white";
+    tileIcon.style.borderWidth = "5px";
+
+    mobileFlagSetting = false;
+}
+
+function mobileTileToFlag(){
+    flagIcon = document.getElementById("mobile-flag-selector");
+    flagIcon.style.backgroundColor = "darkgrey";
+    flagIcon.style.borderColor = "white";
+    flagIcon.style.borderWidth = "5px";
+
+    tileIcon = document.getElementById("mobile-tile-selector");
+    tileIcon.style.backgroundColor = "blanchedalmond";
+    tileIcon.style.borderColor = "black";
+    tileIcon.style.borderWidth = "3px";
+
+    mobileFlagSetting = true;
 }
